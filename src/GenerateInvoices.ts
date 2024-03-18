@@ -1,19 +1,16 @@
-import pgp from "pg-promise";
-import config from "./config";
 import moment from "moment";
+import ContractRepository from "./ContractRepository";
 
 export default class GenerateInvoices {
+
+  constructor(readonly contractRepository: ContractRepository) {
+  }
   async execute(input: Input): Promise<Output[]> {
-    const connection = pgp()(config.DATABASE_URL);
-    const contracts = await connection.query("SELECT * FROM nfe.contract", []);
     const output: Output[] = [];
+    const contracts = await this.contractRepository.list();
     for (const contract of contracts) {
       if (input.type === "cash") {
-        const payments = await connection.query(
-          "SELECT * FROM nfe.payment WHERE id_contract = $1",
-          [contract.id_contract],
-        );
-        for (const payment of payments) {
+        for (const payment of contract.payments) {
           if (
             payment.date.getMonth() + 1 !== input.month ||
             payment.date.getFullYear() !== input.year
@@ -25,7 +22,6 @@ export default class GenerateInvoices {
           });
         }
       }
-      console.log(contract)
       if (input.type === "accrual") {
         let period = 0;
         while (period <= contract.periods) {
@@ -43,7 +39,6 @@ export default class GenerateInvoices {
         }
       }
     }
-    await connection.$pool.end();
     return output;
   }
 }
