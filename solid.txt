@@ -1,0 +1,3 @@
+SRP - Single Responsibility Principle
+
+Devemos separar coisas que mudam por motivos diferentes

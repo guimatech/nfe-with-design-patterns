@@ -4,8 +4,8 @@ import dotenvexpand from "dotenv-expand";
 
 dotenvexpand.expand(
   dotenv.config({
-    path: path.resolve(__dirname, "../.env.development")
-  })
+    path: path.resolve(__dirname, "../.env.development"),
+  }),
 );
 
 interface ENV {
@@ -20,23 +20,25 @@ interface ENV {
 
 interface Config {
   NODE_ENV: string;
-  POSTGRES_HOST: string
-  POSTGRES_PORT: number
-  POSTGRES_USER: string
-  POSTGRES_DB: string
-  POSTGRES_PASSWORD: string
-  DATABASE_URL: string
+  POSTGRES_HOST: string;
+  POSTGRES_PORT: number;
+  POSTGRES_USER: string;
+  POSTGRES_DB: string;
+  POSTGRES_PASSWORD: string;
+  DATABASE_URL: string;
 }
 
 const getConfig = (): ENV => {
   return {
     NODE_ENV: process.env.NODE_ENV,
     POSTGRES_HOST: process.env.NODE_ENV,
-    POSTGRES_PORT: process.env.POSTGRES_PORT ? Number(process.env.POSTGRES_PORT) : undefined,
+    POSTGRES_PORT: process.env.POSTGRES_PORT
+      ? Number(process.env.POSTGRES_PORT)
+      : undefined,
     POSTGRES_USER: process.env.POSTGRES_USER,
     POSTGRES_DB: process.env.POSTGRES_DB,
     POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
-    DATABASE_URL: process.env.DATABASE_URL
+    DATABASE_URL: process.env.DATABASE_URL,
   };
 };
 
