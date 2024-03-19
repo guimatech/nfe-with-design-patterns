@@ -2,6 +2,7 @@ import ContractRepository from "./ContractRepository";
 import DatabaseConnection from "./DatabaseConnection";
 import Contract from "./Contracts";
 import Payment from "./Payment";
+import AccrualBasisStrategy from "./AccrualBasisStrategy";
 
 export default class ContractDatabaseRepository implements ContractRepository {
   constructor(readonly connection: DatabaseConnection) {}
@@ -18,7 +19,7 @@ export default class ContractDatabaseRepository implements ContractRepository {
         contractData.description,
         parseFloat(contractData.amount),
         contractData.periods,
-        contractData.date,
+        contractData.date
       );
 
       const paymentsData = await this.connection.query(

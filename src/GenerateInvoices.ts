@@ -3,8 +3,8 @@ import moment from "moment";
 
 export default class GenerateInvoices {
   constructor(readonly contractRepository: ContractRepository) {}
-  async execute(input: Input): Promise<Output[]> {
-    const output: Output[] = [];
+  async execute(input: Input): Promise<any> {
+    const output: any = [];
     const contracts = await this.contractRepository.list();
     for (const contract of contracts) {
       const invoices = contract.generateInvoices(
@@ -19,7 +19,19 @@ export default class GenerateInvoices {
         });
       }
     }
-    return output;
+    if (!input.format || input.format === "json") {
+      return output;
+    }
+    if (input.format === "csv") {
+      const lines: any[] = [];
+      for (const invoice of output) {
+        const line: string[] = [];
+        line.push(invoice.date);
+        line.push(`${invoice.amount}`);
+        lines.push(line.join(";"));
+      }
+      return lines.join("\n");
+    }
   }
 }
 
@@ -27,6 +39,7 @@ type Input = {
   month: number;
   year: number;
   type: string;
+  format?: string
 };
 
 type Output = {
