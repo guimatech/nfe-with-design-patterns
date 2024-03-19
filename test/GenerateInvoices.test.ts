@@ -8,25 +8,25 @@ let connection: DatabaseConnection;
 let generateInvoices: GenerateInvoices;
 
 beforeEach(() => {
-//  const contractRepository: ContractRepository = {
-//    async list(): Promise<any> {
-//      return [
-//        {
-//          idContract: "",
-//          description: "",
-//          periods: 12,
-//          amount: "6000",
-//          date: new Date("2024-01-01T10:00:00"),
-//          payments: [{
-//            idPayment: "",
-//            idContract: "",
-//            amount: 6000,
-//            date: new Date("2024-01-05T10:00:00")
-//          }]
-//        }
-//      ]
-//    }
-//  }
+  //  const contractRepository: ContractRepository = {
+  //    async list(): Promise<any> {
+  //      return [
+  //        {
+  //          idContract: "",
+  //          description: "",
+  //          periods: 12,
+  //          amount: "6000",
+  //          date: new Date("2024-01-01T10:00:00"),
+  //          payments: [{
+  //            idPayment: "",
+  //            idContract: "",
+  //            amount: 6000,
+  //            date: new Date("2024-01-05T10:00:00")
+  //          }]
+  //        }
+  //      ]
+  //    }
+  //  }
   connection = new PgPromiseAdapter();
   const contractRepository = new ContractDatabaseRepository(connection);
   generateInvoices = new GenerateInvoices(contractRepository);

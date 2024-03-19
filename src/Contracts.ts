@@ -14,23 +14,23 @@ export default class Contract {
   ) {
     this._payments = [];
   }
-  
+
   addPayment(payment: Payment) {
     this._payments.push(payment);
   }
-  
+
   getPayments(): Payment[] {
     return this._payments;
   }
-  
+
   generateInvoices(month: number, year: number, type: string) {
     const invoices: Invoice[] = [];
     if (type === "cash") {
       for (const payment of this.getPayments()) {
         if (
           payment.date.getMonth() + 1 !== month ||
-            payment.date.getFullYear() !== year
-            )
+          payment.date.getFullYear() !== year
+        )
           continue;
         invoices.push(new Invoice(payment.date, payment.amount));
       }
@@ -39,12 +39,9 @@ export default class Contract {
       let period = 0;
       while (period <= this.periods) {
         const date = moment(this.date).add(period++, "months").toDate();
-        if (
-          date.getMonth() + 1 !== month ||
-            date.getFullYear() !== year
-            )
+        if (date.getMonth() + 1 !== month || date.getFullYear() !== year)
           continue;
-        const amount =  this.amount/this.periods;
+        const amount = this.amount / this.periods;
         invoices.push(new Invoice(date, amount));
       }
     }
