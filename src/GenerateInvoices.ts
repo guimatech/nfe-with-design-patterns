@@ -1,10 +1,14 @@
 import ContractRepository from "./ContractRepository";
 import moment from "moment";
+import JsonPresenter from "./JsonPresenter";
+import Presenter from "./Presenter";
 
 export default class GenerateInvoices {
-  constructor(readonly contractRepository: ContractRepository) {}
-  async execute(input: Input): Promise<any> {
-    const output: any = [];
+  constructor(
+    readonly contractRepository: ContractRepository,
+    readonly presenter: Presenter = new JsonPresenter()) {}
+  async execute(input: Input): Promise<Output[]> {
+    const output: Output[] = [];
     const contracts = await this.contractRepository.list();
     for (const contract of contracts) {
       const invoices = contract.generateInvoices(
@@ -14,24 +18,12 @@ export default class GenerateInvoices {
       );
       for (const invoice of invoices) {
         output.push({
-          date: moment(invoice.date).format("YYYY-MM-DD"),
+          date: invoice.date,
           amount: invoice.amount,
         });
       }
     }
-    if (!input.format || input.format === "json") {
-      return output;
-    }
-    if (input.format === "csv") {
-      const lines: any[] = [];
-      for (const invoice of output) {
-        const line: string[] = [];
-        line.push(invoice.date);
-        line.push(`${invoice.amount}`);
-        lines.push(line.join(";"));
-      }
-      return lines.join("\n");
-    }
+    return this.presenter.present(output);
   }
 }
 
@@ -42,7 +34,7 @@ type Input = {
   format?: string
 };
 
-type Output = {
-  date: string;
+export type Output = {
+  date: Date;
   amount: number;
 };
