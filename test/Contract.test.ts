@@ -1,5 +1,5 @@
-import Contract from "../src/Contracts";
-import Payment from "../src/Payment";
+import Contract from "../src/domain/Contracts";
+import Payment from "../src/domain/Payment";
 
 test("Deve calcular o saldo do contrato", () => {
   const contract = new Contract(

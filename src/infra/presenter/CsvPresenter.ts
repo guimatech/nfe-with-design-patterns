@@ -1,6 +1,6 @@
-import { Output } from "./GenerateInvoices";
-import Presenter from "./Presenter";
 import moment from "moment";
+import Presenter from "src/application/presenter/Presenter";
+import { Output } from "src/application/usecase/GenerateInvoices";
 
 export default class CsvPresenter implements Presenter {
   present(output: Output[]): any {

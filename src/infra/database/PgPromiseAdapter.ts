@@ -1,5 +1,5 @@
+import config from "../../config";
 import DatabaseConnection from "./DatabaseConnection";
-import config from "./config";
 import pgp from "pg-promise";
 
 export default class PgPromiseAdapter implements DatabaseConnection {

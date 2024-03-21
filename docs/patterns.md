@@ -26,6 +26,14 @@ Formatar e adequar um determinado conjunto de dados às necessidades do cliente
 
 Permite acrescentar funcionalidades a um objeto existente (OCP)
 
+## Controller
+
+Conecte o driver com a aplicação, repassando os dados de entrada e retornando a saída de acordo com o drive
+
+## Composition Root
+
+Entry point da aplicação, onde são criadas as instâncias utilizadas pelos componentes
+
 ## Referencias
 
 - https://refactoring.guru/design-patterns/

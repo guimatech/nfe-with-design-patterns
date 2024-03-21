@@ -1,8 +1,8 @@
-import ContractRepository from "./ContractRepository";
-import DatabaseConnection from "./DatabaseConnection";
-import Contract from "./Contracts";
-import Payment from "./Payment";
-import AccrualBasisStrategy from "./AccrualBasisStrategy";
+import ContractRepository from "src/application/repository/ContractRepository";
+import DatabaseConnection from "../database/DatabaseConnection";
+import Contract from "../../domain/Contracts";
+import Payment from "../../domain/Payment";
+
 
 export default class ContractDatabaseRepository implements ContractRepository {
   constructor(readonly connection: DatabaseConnection) {}

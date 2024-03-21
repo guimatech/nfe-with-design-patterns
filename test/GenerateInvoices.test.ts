@@ -1,9 +1,9 @@
-import GenerateInvoices from "../src/GenerateInvoices";
-import ContractRepository from "../src/ContractRepository";
-import ContractDatabaseRepository from "../src/ContractDatabaseRepository";
-import PgPromiseAdapter from "../src/PgPromiseAdapter";
-import DatabaseConnection from "../src/DatabaseConnection";
-import CsvPresenter from "../src/CsvPresenter";
+import DatabaseConnection from "../src/infra/database/DatabaseConnection";
+import ContractRepository from "../src/application/repository/ContractRepository";
+import GenerateInvoices from "../src/application/usecase/GenerateInvoices";
+import PgPromiseAdapter from "../src/infra/database/PgPromiseAdapter";
+import ContractDatabaseRepository from "../src/infra/repository/ContractDatabaseRepository";
+import CsvPresenter from "../src/infra/presenter/CsvPresenter";
 
 let connection: DatabaseConnection;
 let contractRepository: ContractRepository;
