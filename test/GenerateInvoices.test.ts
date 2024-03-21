@@ -4,6 +4,8 @@ import GenerateInvoices from "../src/application/usecase/GenerateInvoices";
 import PgPromiseAdapter from "../src/infra/database/PgPromiseAdapter";
 import ContractDatabaseRepository from "../src/infra/repository/ContractDatabaseRepository";
 import CsvPresenter from "../src/infra/presenter/CsvPresenter";
+import JsonPresenter from "../src/infra/presenter/JsonPresenter";
+import Mediator from "../src/infra/mediator/Mediator";
 
 let connection: DatabaseConnection;
 let contractRepository: ContractRepository;
@@ -31,7 +33,7 @@ beforeEach(() => {
   //  }
   connection = new PgPromiseAdapter();
   contractRepository = new ContractDatabaseRepository(connection);
-  generateInvoices = new GenerateInvoices(contractRepository);
+  generateInvoices = new GenerateInvoices(contractRepository, new JsonPresenter(), new Mediator());
 });
 
 test("Deve gerar as notas fiscais por regime de caixa", async () => {
@@ -64,7 +66,7 @@ test("Deve gerar as notas fiscais por regime de competência por csv", async () 
     format: "csv",
   };
   const presenter = new CsvPresenter();
-  const generateInvoices = new GenerateInvoices(contractRepository, presenter);
+  const generateInvoices = new GenerateInvoices(contractRepository, presenter, new Mediator());
   const output = await generateInvoices.execute(input);
   expect(output).toBe("2024-02-01;500");
 });

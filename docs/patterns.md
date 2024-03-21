@@ -32,7 +32,11 @@ Conecte o driver com a aplicação, repassando os dados de entrada e retornando 
 
 ## Composition Root
 
-Entry point da aplicação, onde são criadas as instâncias utilizadas pelos componentes
+Entry point da aplicação, onde são criadas as instâncias utilizadas pelos componentes, monta o grafo de dependencias da aplicação
+
+## Mediator
+
+Cria um mecanismo de notificação para reduzir o acoplamento entre os objetos
 
 ## Referencias
 
