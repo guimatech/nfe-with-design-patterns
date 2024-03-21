@@ -9,7 +9,7 @@ export default class CashBasisStrategy implements InvoiceGenerationStrategy {
       if (
         payment.date.getMonth() + 1 !== month ||
         payment.date.getFullYear() !== year
-        )
+      )
         continue;
       invoices.push(new Invoice(payment.date, payment.amount));
     }

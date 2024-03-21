@@ -19,7 +19,7 @@ export default class ContractDatabaseRepository implements ContractRepository {
         contractData.description,
         parseFloat(contractData.amount),
         contractData.periods,
-        contractData.date
+        contractData.date,
       );
 
       const paymentsData = await this.connection.query(

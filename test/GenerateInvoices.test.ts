@@ -61,7 +61,7 @@ test("Deve gerar as notas fiscais por regime de competência por csv", async () 
     month: 2,
     year: 2024,
     type: "accrual",
-    format: "csv"
+    format: "csv",
   };
   const presenter = new CsvPresenter();
   const generateInvoices = new GenerateInvoices(contractRepository, presenter);

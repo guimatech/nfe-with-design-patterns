@@ -10,4 +10,3 @@ Componentes de alto nível não devem depender de componentes de baixo nível, e
 
 Fechado para modificação e aberto para extensão
 Crie pontos de extensão, evitando mexer no que já está funcionando e evitando fragilizar o código
-

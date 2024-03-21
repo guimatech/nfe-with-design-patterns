@@ -9,7 +9,7 @@ export default class Contract {
     readonly description: string,
     readonly amount: number,
     readonly periods: number,
-    readonly date: Date
+    readonly date: Date,
   ) {
     this._payments = [];
   }
@@ -28,7 +28,7 @@ export default class Contract {
       balance -= payment.amount;
     }
     return balance;
-   }
+  }
 
   generateInvoices(month: number, year: number, type: string) {
     const invoiceGenerationStrategy = InvoiceGenerationFactory.create(type);

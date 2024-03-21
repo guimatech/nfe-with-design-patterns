@@ -22,6 +22,10 @@ Criar uma instância com base em uma string
 
 Formatar e adequar um determinado conjunto de dados às necessidades do cliente
 
+## Decorator
+
+Permite acrescentar funcionalidades a um objeto existente (OCP)
+
 ## Referencias
 
 - https://refactoring.guru/design-patterns/
